@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --noesis-ink: #0B0F1A;
+    --noesis-ink-soft: #1a1f2e;
+    --noesis-paper: #F7F7F2;
+    --noesis-paper-2: #EFEFE8;
+    --noesis-accent: #E8F14A;
+    --noesis-grey: #6B7280;
+    --noesis-grey-soft: #A8B2C7;
+    --noesis-line: #E3E3DC;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html, body {
+    background: var(--noesis-paper);
+    color: var(--noesis-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  p { text-wrap: pretty; }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full;
+    max-width: 1280px;
+    padding-left: clamp(20px, 4vw, 64px);
+    padding-right: clamp(20px, 4vw, 64px);
+  }
+
+  .section-pad {
+    padding-top: clamp(64px, 9vw, 140px);
+    padding-bottom: clamp(64px, 9vw, 140px);
+    border-top: 1px solid var(--noesis-line);
+  }
+  .section-pad:first-child { border-top: none; }
+
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .section-label {
+    @apply flex items-baseline gap-3.5 text-noesis-grey mb-7 mono;
+  }
+  .section-label .num {
+    background: var(--noesis-ink);
+    color: var(--noesis-paper);
+    padding: 3px 8px;
+    font-weight: 500;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; font-size: 14px; font-weight: 500;
+    border: 1px solid var(--noesis-ink);
+    transition: all .18s ease;
+    letter-spacing: -0.005em;
+  }
+  .btn .arrow { transition: transform .18s ease; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  .btn-primary {
+    @apply btn;
+    background: var(--noesis-ink);
+    color: var(--noesis-paper);
+  }
+  .btn-primary:hover { background: var(--noesis-accent); color: var(--noesis-ink); }
+
+  .btn-accent {
+    @apply btn;
+    background: var(--noesis-accent);
+    color: var(--noesis-ink);
+  }
+  .btn-accent:hover { background: var(--noesis-ink); color: var(--noesis-paper); }
+
+  .btn-ghost {
+    @apply btn;
+    background: transparent;
+    color: var(--noesis-ink);
+  }
+  .btn-ghost:hover { background: var(--noesis-ink); color: var(--noesis-paper); }
+
+  .btn-secondary {
+    @apply btn-ghost;
+  }
+
+  .eyebrow {
+    @apply mono text-noesis-grey;
+  }
+
+  .card {
+    border: 1px solid var(--noesis-ink);
+    background: var(--noesis-paper);
+    padding: 28px;
+    transition: background .15s ease;
+  }
+  .card:hover { background: var(--noesis-paper-2); }
+  .card-dark {
+    background: var(--noesis-ink);
+    color: var(--noesis-paper);
+    border-color: var(--noesis-ink);
+  }
+  .card-dark:hover { background: var(--noesis-ink-soft); }
+  .card-accent {
+    background: var(--noesis-accent);
+    border-color: var(--noesis-ink);
+  }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--noesis-ink);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .chip-accent { background: var(--noesis-accent); }
+  .chip-dark { background: var(--noesis-ink); color: var(--noesis-paper); }
+
+  .lead {
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.5;
+    color: var(--noesis-ink);
+    max-width: 62ch;
+  }
+
+  .highlight-accent {
+    position: relative;
+    display: inline-block;
+  }
+  .highlight-accent::before {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: 0.12em;
+    height: 0.22em;
+    background: var(--noesis-accent);
+    z-index: -1;
+  }
+}
