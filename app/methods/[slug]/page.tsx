@@ -2,7 +2,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { methods, getMethodBySlug } from '@/lib/methods';
 import { methodDetails } from '@/lib/method-details';
+import { getMethodExamples } from '@/lib/method-examples';
 import { CopyButton } from '@/components/CopyButton';
+import { MethodChat } from '@/components/MethodChat';
 
 export function generateStaticParams() {
   return methods.map((m) => ({ slug: m.slug }));
@@ -23,6 +25,7 @@ export default async function MethodPage({ params }: { params: Promise<{ slug: s
   const method = getMethodBySlug(slug);
   if (!method) notFound();
   const detail = methodDetails[slug];
+  const examples = getMethodExamples(slug);
 
   return (
     <>
@@ -47,6 +50,57 @@ export default async function MethodPage({ params }: { params: Promise<{ slug: s
           </div>
         </div>
       </section>
+
+      {examples && (
+        <section className="section-pad" style={{ background: 'var(--noesis-paper-2)' }}>
+          <div className="wrap max-w-4xl">
+            <div className="section-label">
+              <span className="num">00</span> ПРИКЛАДИ + СПРОБУЙ З БОТОМ
+            </div>
+            <p className="text-noesis-grey mb-10 max-w-[60ch] leading-relaxed">
+              Два кейси — професійний і побутовий. Підстав свою ситуацію в поле під прикладом — бот проведе тебе через метод <em>{method.name}</em>.
+            </p>
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              <div className="border border-noesis-ink bg-noesis-paper">
+                <div className="p-5 border-b border-noesis-ink bg-noesis-ink text-noesis-paper">
+                  <div className="mono text-noesis-accent text-xs mb-2">ПРОФЕСІЙНИЙ</div>
+                  <h3 className="font-serif text-xl leading-tight">{examples.professional.title}</h3>
+                </div>
+                <div className="p-5 text-sm leading-relaxed text-noesis-ink/85 border-b border-noesis-line">
+                  {examples.professional.body}
+                </div>
+                <MethodChat
+                  methodSlug={slug}
+                  methodName={method.name}
+                  seedPrompt={examples.professional.body}
+                  variant="compact"
+                />
+              </div>
+
+              <div className="border border-noesis-ink bg-noesis-paper">
+                <div className="p-5 border-b border-noesis-ink bg-noesis-accent">
+                  <div className="mono text-xs mb-2">ПОБУТОВИЙ</div>
+                  <h3 className="font-serif text-xl leading-tight">{examples.everyday.title}</h3>
+                </div>
+                <div className="p-5 text-sm leading-relaxed text-noesis-ink/85 border-b border-noesis-line">
+                  {examples.everyday.body}
+                </div>
+                <MethodChat
+                  methodSlug={slug}
+                  methodName={method.name}
+                  seedPrompt={examples.everyday.body}
+                  variant="compact"
+                />
+              </div>
+            </div>
+
+            <p className="mono text-xs text-noesis-grey mt-6">
+              ПОЛЕ ПРЕД-ЗАПОВНЕНЕ КЕЙСОМ · ЗАМІНЬ НА СВІЙ І ВІДПРАВ
+            </p>
+          </div>
+        </section>
+      )}
 
       {detail ? (
         <>

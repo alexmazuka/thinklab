@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { EmailForm } from '@/components/EmailForm';
+import { BotSelector } from '@/components/BotSelector';
 import { methods } from '@/lib/methods';
 
 const CORE_SLUGS = [
@@ -46,7 +47,7 @@ export default function HomePage() {
               <Link href="/methods" className="btn-primary">
                 Відкрити каталог <span className="arrow">→</span>
               </Link>
-              <Link href="/bot" className="btn-ghost">
+              <Link href="#bot" className="btn-ghost">
                 Спробувати бота — безкоштовно <span className="arrow">→</span>
               </Link>
             </div>
@@ -72,10 +73,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 02 PROBLEM */}
+      {/* 02 BOT — INLINE */}
+      <section id="bot" className="section-pad" style={{ background: 'var(--noesis-paper-2)' }}>
+        <div className="wrap">
+          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-12 items-start">
+            <div>
+              <div className="section-label"><span className="num">02</span> БОТ-КОУЧ</div>
+              <h2 className="font-serif text-[clamp(36px,5.5vw,72px)] leading-none">
+                Спробуй <em>прямо тут.</em>
+              </h2>
+              <p className="text-noesis-grey mt-6 leading-relaxed max-w-[44ch]">
+                Обери, що вирішуємо. Бот підставить відповідний фреймворк і проведе через нього питаннями — не готовими відповідями.
+              </p>
+              <ul className="mt-8 space-y-2 mono text-xs text-noesis-grey">
+                <li>· БЕЗ РЕЄСТРАЦІЇ</li>
+                <li>· OPENROUTER · GPT-4O-MINI</li>
+                <li>· КОНТЕКСТ МЕТОДУ В СИСТЕМНОМУ ПРОМПТІ</li>
+                <li>· УКРАЇНСЬКОЮ ЗА ЗАМОВЧУВАННЯМ</li>
+              </ul>
+            </div>
+            <BotSelector />
+          </div>
+        </div>
+      </section>
+
+      {/* 03 PROBLEM */}
       <section className="section-pad">
         <div className="wrap">
-          <div className="section-label"><span className="num">02</span> ПРОБЛЕМА</div>
+          <div className="section-label"><span className="num">03</span> ПРОБЛЕМА</div>
           <div className="grid md:grid-cols-[1fr_1.1fr] gap-20">
             <div>
               <h2 className="font-serif text-[clamp(36px,5.5vw,88px)] leading-none">
@@ -112,12 +137,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 03 CORE 10 */}
+      {/* 04 CORE 10 */}
       <section className="section-pad">
         <div className="wrap">
           <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
             <div>
-              <div className="section-label"><span className="num">03</span> КАТАЛОГ</div>
+              <div className="section-label"><span className="num">04</span> КАТАЛОГ</div>
               <h2 className="font-serif text-[clamp(36px,5.5vw,88px)] leading-none">
                 Почни з <em>десяти</em>.
               </h2>
@@ -160,10 +185,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 04 HOW IT WORKS */}
+      {/* 05 HOW IT WORKS */}
       <section className="section-pad" style={{ background: 'var(--noesis-paper-2)' }}>
         <div className="wrap">
-          <div className="section-label"><span className="num">04</span> ЯК ЦЕ ПРАЦЮЄ</div>
+          <div className="section-label"><span className="num">05</span> ЯК ЦЕ ПРАЦЮЄ</div>
           <h2 className="font-serif text-[clamp(36px,5.5vw,88px)] leading-none mb-14">
             Три кроки.<br /><em>Повторюються нескінченно.</em>
           </h2>
